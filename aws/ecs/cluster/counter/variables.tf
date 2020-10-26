@@ -6,6 +6,13 @@ variable "region" {
   default = "us-west-2"
 }
 
+variable "aws"{
+  type = object({
+    key = string
+    secret= string
+  })
+}
+
 variable "ecs_cluster_size" {
   default = 3
 }

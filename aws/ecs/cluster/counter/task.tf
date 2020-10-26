@@ -1,7 +1,7 @@
 resource "aws_ecs_task_definition" "consul" {
   count  = var.deploy_consul_clients ? 1 : 0
   family = "consul-client"
-  container_definitions = templatefile("templates/task_definition.json", {
+  container_definitions = templatefile("./templates/task_definition.json", {
     consul_client_secret_arn = aws_secretsmanager_secret.hcp_consul.0.arn
     consul_image             = "joatmon08/consul-ecs:v1.8.4-v1.14.4"
   })

@@ -11,9 +11,20 @@ terraform {
       version = "~> 2.1.2"
     }
   }
-  backend "remote" {}
+ 
+  backend "remote" {
+    organization = "kodo-sensei"
+
+    workspaces {
+      name = "test"
+    }
+  
+  }
+
 }
 
 provider "aws" {
   region = var.region
+  access_key = var.aws.key
+  secret_key = var.aws.secret
 }

@@ -1,9 +1,13 @@
 variable "name" {
   default = "ecs-to-hcp-consul"
+  type = string
+  description = "Name of the ECS cluster and infrastructure components"
 }
 
 variable "region" {
   default = "us-west-2"
+  type = string
+  description = "AWS region"
 }
 
 variable "ecs_cluster_size" {
@@ -22,6 +26,8 @@ variable "enable_public_instances" {
   default = false
 }
 
+variable "role_arn" {}
+
 variable "hcp_consul_host" {}
 
 variable "hcp_consul_gossip_encrypt" {}
@@ -30,7 +36,7 @@ variable "hcp_consul_datacenter" {}
 
 variable "hcp_consul_client_acl_token" {}
 
-variable "hcp_consul_ca_pem_file_path" {}
+variable "hcp_consul_ca_pem" {}
 
 variable "peering_connection_has_been_added_to_hvn" {
   default = false
@@ -48,4 +54,8 @@ variable "tags" {
   default = {
     source = "hcp-consul"
   }
+}
+
+variable "consul_ecs_image" {
+  default = "joatmon08/consul-ecs:v1.9.1-v1.16.0"
 }

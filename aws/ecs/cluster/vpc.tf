@@ -2,7 +2,7 @@ data "aws_availability_zones" "available" {}
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "2.50.0"
+  version = "2.64.0"
 
   name                 = var.name
   cidr                 = "10.0.0.0/16"
@@ -14,10 +14,12 @@ module "vpc" {
   enable_dns_hostnames = false
 
   public_subnet_tags = {
-    key = "AmazonECSManaged"
+    key                                 = "AmazonECSManaged"
+    "kubernetes.io/cluster/${var.name}" = "shared"
   }
 
   private_subnet_tags = {
-    key = "AmazonECSManaged"
+    key                                 = "AmazonECSManaged"
+    "kubernetes.io/cluster/${var.name}" = "shared"
   }
 }
